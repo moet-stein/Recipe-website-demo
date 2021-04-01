@@ -1,4 +1,5 @@
 const myKey = config.MY_KEY;
+console.log(myKey);
 
 // fetch(
 //   'https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&intolerances=gluten&sort=random&apiKey=' + myKey
@@ -30,7 +31,7 @@ const fetchRecipes = async () => {
 //   .then((res) => console.log(res.data.results))
 //   .catch((e) => console.log('ERROR', e));
 
-//********************** *********************************************************************************************************************************************************************************/
+//*******************************************************************************************************************************************************************************************************/
 
 // *****DOM WITH RECIPES OPTION2*****//
 // WHEN HITTING BUTTON, SHOW MORE RECIPES (10 by EACH BUTTON)
@@ -52,7 +53,7 @@ const addNewRecipes = async () => {
     //  </a>
     //  <button id="addBtn" class="add-Btn"></button>
     //  </div>;
-    console.log(recipes);
+    console.log(recipes[i]);
 
     // CREATING DIV INSIDE IMAGES DIV
     const imgDiv = document.createElement('div');
@@ -98,7 +99,7 @@ button.addEventListener('click', addNewRecipes);
 
 //*****RECIPES OPTION2*****//
 // Get an array of recipes with axios(and with async await func)
-// This data includes ID that can be used to request the data of ingredients as below
+// This data includes ID that can be used to request the data of ingredients as below (getInfredients())
 const fetchRecipes2 = async () => {
   try {
     const res = await axios.get(
@@ -111,7 +112,7 @@ const fetchRecipes2 = async () => {
   }
 };
 
-//********************** *********************************************************************************************************************************************************************************/
+//*******************************************************************************************************************************************************************************************************/
 
 // *****INGREDIENTS OPTION1****//
 // Get ingredients names with axios
