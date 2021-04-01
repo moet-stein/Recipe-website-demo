@@ -1,0 +1,50 @@
+.images {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.image-Div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  height: 400px;
+  margin: 20px;
+}
+
+.a-for-image {
+}
+
+#recipeImg {
+  width: 100%;
+  height: auto;
+}
+
+.a-for-title {
+  text-align: center;
+  text-decoration: none;
+  color: rgb(6, 190, 0);
+}
+
+.a-for-title:hover {
+  text-decoration: underline;
+}
+
+.recipeTitle {
+  font-size: 20px;
+}
+
+.add-Btn {
+  background-color: rgb(15, 119, 12);
+  color: white;
+  border: none;
+  height: 40px;
+  border-radius: 5px;
+}
+
+.add-Btn:hover {
+  cursor: pointer;
+}
