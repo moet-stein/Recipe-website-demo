@@ -1,5 +1,4 @@
 const myKey = config.MY_KEY;
-console.log(myKey);
 
 // fetch(
 //   'https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&intolerances=gluten&sort=random&apiKey=' + myKey
@@ -51,9 +50,12 @@ const addNewRecipes = async () => {
     //  <a class="a-for-title">
     //    <h2 class="recipe-title">TITLE</h2>
     //  </a>
+    //  <ul>
+    //     <li>ingredients</li>
+    //  </ul>
     //  <button id="addBtn" class="add-Btn"></button>
     //  </div>;
-    console.log(recipes[i]);
+    // console.log(recipes[i]);
 
     // CREATING DIV INSIDE IMAGES DIV
     const imgDiv = document.createElement('div');
@@ -83,8 +85,18 @@ const addNewRecipes = async () => {
     // ADDING TITLE in A tag
     const title = document.createElement('h2');
     title.setAttribute('class', 'recipe-title');
-    title.innerText = recipes[i].title;
+    title.innerHTML = recipes[i].title;
     titleATag.appendChild(title);
+
+    // Adding UL for Ingredients
+    const ul = document.createElement('ul');
+    let ingredientsArr = await getIngredients(recipes[i].id);
+    for (let j = 0; j < ingredientsArr.length; j++) {
+      const li = document.createElement('li');
+      li.innerHTML = ingredientsArr[j];
+      ul.appendChild(li);
+    }
+    imgDiv.appendChild(ul);
 
     // ADDING BUTTON
     const addBtn = document.createElement('button');
@@ -116,15 +128,17 @@ const fetchRecipes2 = async () => {
 
 // *****INGREDIENTS OPTION1****//
 // Get ingredients names with axios
-const getIngredients = async () => {
+const getIngredients = async (id) => {
   try {
     const config = { headers: { 'Content-Type': 'application/json' } };
     const res = await axios.get(
-      'https://api.spoonacular.com/recipes/716429/information?includeNutrition=false&apiKey=' +
+      'https://api.spoonacular.com/recipes/' +
+        id +
+        '/information?includeNutrition=false&apiKey=' +
         myKey,
       config
     );
-    console.log(res.data.extendedIngredients.map((x) => x.name));
+    return res.data.extendedIngredients.map((x) => x.name);
   } catch (e) {
     console.log('ERROR', e);
   }
@@ -138,7 +152,7 @@ const getIngredients2 = async () => {
       'https://api.spoonacular.com/recipes/716437/information?includeNutrition=false&apiKey=' +
         myKey
     );
-    console.log(res.data.extendedIngredients.map((x) => x.name));
+    return res.data.extendedIngredients.map((x) => x.name);
   } catch (e) {
     console.log(e);
   }
