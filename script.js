@@ -88,22 +88,28 @@ const addNewRecipes = async () => {
     title.innerHTML = recipes[i].title;
     titleATag.appendChild(title);
 
-    // Adding UL for Ingredients
-    const ul = document.createElement('ul');
-    let ingredientsArr = await getIngredients(recipes[i].id);
-    for (let j = 0; j < ingredientsArr.length; j++) {
-      const li = document.createElement('li');
-      li.innerHTML = ingredientsArr[j];
-      ul.appendChild(li);
-    }
-    imgDiv.appendChild(ul);
+    // Adding UL LI for Ingredients
+    // ***************REQUESTING OVERLOAD REASON HERE********************
+    // const ul = document.createElement('ul');
+    // let ingredientsArr = await getIngredients(recipes[i].id);
+    // for (let j = 0; j < ingredientsArr.length; j++) {
+    //   const li = document.createElement('li');
+    //   li.innerHTML = ingredientsArr[j];
+    //   ul.appendChild(li);
+    // }
+    // imgDiv.appendChild(ul);
 
     // ADDING BUTTON
     const addBtn = document.createElement('button');
-    addBtn.setAttribute('id', 'addBtn');
+    addBtn.setAttribute('id', 'addingBtn' + recipes[i].id);
     addBtn.setAttribute('class', 'add-Btn');
-    addBtn.innerText = 'ADD TO LIST';
+    addBtn.innerText = 'SAVE';
     imgDiv.appendChild(addBtn);
+    // Adding Button
+    const addingBtn = document.getElementById('addingBtn' + recipes[i].id);
+    addingBtn.addEventListener('click', function () {
+      console.log('added!!!!', addingBtn);
+    });
   }
 };
 // CLICKING THE BUTTON AND CALLING THE FUNC ABOVE(addNewRecipes)
